@@ -8,3 +8,9 @@ export interface Note {
 };
 
 export type Tags = "Work" | "Personal" | "Meeting" | "Shopping" | "Todo";
+
+export type NoteFormValues = {
+    title: string,
+    content: string,
+    tag: Tags,
+}

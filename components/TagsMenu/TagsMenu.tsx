@@ -12,15 +12,14 @@ export default function TagsMenu() {
 
     const openNotes = () => setIsNotesOpen(!isNotesOpen);
 
-
     return (
         <div className={css.menuContainer}>
             <button className={css.menuButton} onClick={openNotes}>
-                Notes ▾
+                Notes {isNotesOpen ? "▴" : "▾"}
             </button>
             {isNotesOpen && <ul className={css.menuList}>
                 <li className={css.menuItem}>
-                    <Link href={`/notes/filter/All`} className={css.menuLink}>
+                    <Link href={`/notes/filter/All`} className={css.menuLink} onClick={openNotes}>
                         All notes
                     </Link>
                 </li>
