@@ -2,7 +2,7 @@
 
 import css from './NoteForm.module.css';
 import { createNote } from '../../lib/api';
-import { QueryClient, useMutation} from '@tanstack/react-query';
+import { useQueryClient, useMutation} from '@tanstack/react-query';
 import { useId } from 'react';
 import { useRouter } from 'next/navigation';
 import { NoteFormValues } from '@/types/note';
@@ -11,7 +11,7 @@ import { useNoteDraftStore } from '@/lib/store/noteStore';
 export default function NoteForm() {
     const fieldId = useId();
     const router = useRouter();
-    const queryClient = new QueryClient();
+    const queryClient = useQueryClient();
     const { draft, setDraft, clearDraft } = useNoteDraftStore();
 
     const handleChange = (
@@ -52,7 +52,7 @@ export default function NoteForm() {
                     id={`${fieldId}-title`}
                     type="text"
                     name="title"
-                    defaultValue={draft?.title}
+                    value={draft.title}
                     className={css.input}
                     onChange={handleChange}
                 />
@@ -63,7 +63,7 @@ export default function NoteForm() {
                 <textarea
                     id={`${fieldId}-content`}
                     name="content"
-                    defaultValue={draft?.content}
+                    value={draft.content}
                     rows={8}
                     className={css.textarea}
                     onChange={handleChange}
@@ -75,7 +75,7 @@ export default function NoteForm() {
                 <select
                     id={`${fieldId}-tag`}
                     name="tag"
-                    defaultValue={draft?.tag}
+                    value={draft.tag}
                     className={css.select}
                     onChange={handleChange}
                 >
